@@ -20,10 +20,11 @@ var (
 func init() {
 
 	//1.建立连接
-	if client, err = mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://admin:123456@211.71.76.189:27017").SetConnectTimeout(5*time.Second)); err != nil {
+	if client, err = mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://root:123456@211.71.76.189:27017").SetConnectTimeout(5*time.Second)); err != nil {
 		fmt.Print(err)
 		return
 	}
+	fmt.Println("client:",client)
 	//2.选择数据库
 	db = client.Database("post_data")
 

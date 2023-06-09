@@ -10,7 +10,7 @@ import (
 
 func GetPostmanDeal(ctx context.Context,region, date,postmanId,
 	dealStartTime,dealEndTime string) ([]*view_model.PostmanDeal,int64,error){
-	var findoptions = &options.FindOptions{}
+	findoptions := &options.FindOptions{}
 	cur, err := postRawDeal.Find(ctx, bson.M{"post_deal_date": date, "city": region,
 		"post_man_id":postmanId}, findoptions)
 	if err != nil {
@@ -20,7 +20,7 @@ func GetPostmanDeal(ctx context.Context,region, date,postmanId,
 	var total int64
 	total,err = postRawDeal.CountDocuments(ctx, bson.M{"post_deal_date": date, "city": region,
 		"post_man_id":postmanId})
-	deals := []*view_model.PostmanDeal{}
+	var deals []*view_model.PostmanDeal
 	err = cur.All(ctx, &deals)
 	if err != nil {
 		log.Printf("[GetPostPredictDeal] error call mongo curosr,err: %v", err)

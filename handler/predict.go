@@ -37,7 +37,7 @@ func PredictHandler(c *gin.Context) {
 }
 
 func Predict(ctx context.Context, resp *view_model.CommonResult, modelName, modelVersion string, input *view_model.PredictInput) {
-	rpcInput := ConvertPredictIputFromApiToRpc(input)
+	rpcInput := ConvertPredictInputFromApiToRpc(input)
 	order, err := rpc.Predict(ctx, modelName, modelVersion, rpcInput)
 	if err != nil {
 		resp.Message = err.Error()
@@ -49,7 +49,7 @@ func Predict(ctx context.Context, resp *view_model.CommonResult, modelName, mode
 	}
 }
 
-func ConvertPredictIputFromApiToRpc(input *view_model.PredictInput) *post_model_predict.PredictData {
+func ConvertPredictInputFromApiToRpc(input *view_model.PredictInput) *post_model_predict.PredictData {
 	var points []*post_model_predict.Point
 	for _, point := range input.Points {
 		points = append(points, &post_model_predict.Point{

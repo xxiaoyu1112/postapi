@@ -32,9 +32,11 @@ func main() {
 	// 获取快递员揽件信息
 	r.POST("/data/getPost", handler.GetPostmanDealHandler)
 	// 获取快递员ID
-	r.GET("/data/postmanId", handler.GetPostmanIdHandler)
+	r.POST("/data/postmanId", handler.GetPostmanIdHandler)
 	// 获取快递员工作日期
 	r.POST("/data/postmanDate", handler.GetPostmanDateHandler)
+	// 获取某位快递员当天所有订单
+	r.POST("/data/postmanRawData", handler.GetPostmanRawDataHandler)
 	// 获取原始数据
 	r.POST("/data/raw/", handler.GetRawDealHandler)
 	// 获取原始数据目录
